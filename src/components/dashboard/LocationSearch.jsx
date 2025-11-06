@@ -135,17 +135,17 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Search Input with Autocomplete */}
       <div className="relative" ref={searchRef}>
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
           <Input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
             placeholder="Search for any city worldwide... (min 3 characters)"
-            className="pl-12 pr-12 h-14 text-base bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-climate-500 focus:ring-climate-500/20"
+            className="pl-10 sm:pl-12 pr-10 sm:pr-12 h-12 sm:h-14 text-sm sm:text-base bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-climate-500 focus:ring-climate-500/20"
             disabled={loading}
           />
 
@@ -153,16 +153,16 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
           {searchTerm && !loading && (
             <button
               onClick={handleClear}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+              className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
 
           {/* Loading spinner */}
           {loading && (
-            <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-              <Loader2 className="w-5 h-5 text-climate-500 animate-spin" />
+            <div className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2">
+              <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-climate-500 animate-spin" />
             </div>
           )}
         </div>
@@ -188,9 +188,9 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="absolute z-50 w-full mt-2 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl max-h-80 overflow-y-auto backdrop-blur-xl"
+              className="absolute z-50 w-full mt-2 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl max-h-64 sm:max-h-80 overflow-y-auto backdrop-blur-xl"
             >
-              <div className="p-3 border-b border-gray-700 bg-gray-900/50">
+              <div className="p-2 sm:p-3 border-b border-gray-700 bg-gray-900/50">
                 <p className="text-xs text-gray-400 flex items-center gap-2">
                   <MapPin className="w-3 h-3" />
                   Powered by OpenStreetMap Nominatim
@@ -201,17 +201,17 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
                 <button
                   key={`${city.lat}-${city.lon}-${index}`}
                   onClick={() => handleCityClick(city)}
-                  className="w-full px-4 py-4 text-left hover:bg-gray-700/50 transition-colors flex items-start gap-3 border-t border-gray-700/50 first:border-t-0 group"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-4 text-left hover:bg-gray-700/50 transition-colors flex items-start gap-2 sm:gap-3 border-t border-gray-700/50 first:border-t-0 group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-climate-500/10 border border-climate-500/20 flex items-center justify-center shrink-0 group-hover:bg-climate-500/20 transition-colors">
-                    <MapPin className="w-5 h-5 text-climate-400" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-climate-500/10 border border-climate-500/20 flex items-center justify-center shrink-0 group-hover:bg-climate-500/20 transition-colors">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-climate-400" />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-white truncate text-base">
+                    <p className="font-semibold text-white truncate text-sm sm:text-base">
                       {city.name}
                     </p>
-                    <p className="text-sm text-gray-400 line-clamp-1 mt-0.5">
+                    <p className="text-xs sm:text-sm text-gray-400 line-clamp-1 mt-0.5">
                       {city.displayName}
                     </p>
                     {city.state && (
@@ -221,7 +221,7 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
                     )}
                   </div>
 
-                  <div className="text-xs text-gray-500 shrink-0 text-right space-y-1">
+                  <div className="text-xs text-gray-500 shrink-0 text-right space-y-1 hidden sm:block">
                     <div className="font-mono">{city.lat.toFixed(2)}°</div>
                     <div className="font-mono">{city.lon.toFixed(2)}°</div>
                   </div>
@@ -234,13 +234,13 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
 
       {/* Popular Cities Quick Access */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-sm font-semibold text-gray-300">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <p className="text-xs sm:text-sm font-semibold text-gray-300">
             Quick Access
           </p>
           <p className="text-xs text-gray-500">Popular Cities</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
           {POPULAR_CITIES.map((city) => (
             <Button
               key={city.name}
@@ -248,13 +248,13 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
               size="sm"
               onClick={() => handlePopularCityClick(city)}
               disabled={loading}
-              className={`flex items-center justify-center gap-2 h-12 ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 text-xs sm:text-sm ${
                 currentLocation?.name === city.name
                   ? 'bg-climate-500 hover:bg-climate-600 border-climate-500 text-white'
                   : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:bg-gray-700/50 hover:border-gray-600'
               }`}
             >
-              <MapPin className="w-4 h-4" />
+              <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="font-medium">{city.name}</span>
             </Button>
           ))}
@@ -268,9 +268,9 @@ export function LocationSearch({ onLocationSelect, currentLocation }) {
           size="sm"
           onClick={handleUseMyLocation}
           disabled={loading}
-          className="flex items-center gap-2 text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors h-11 px-6"
+          className="flex items-center gap-2 text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors h-10 sm:h-11 px-4 sm:px-6 text-xs sm:text-sm"
         >
-          <Navigation className="w-4 h-4" />
+          <Navigation className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           <span className="font-medium">Use My Current Location</span>
         </Button>
       </div>
