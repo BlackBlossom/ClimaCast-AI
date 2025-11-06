@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-climate-500/20 via-transparent to-transparent"></div>
       </div>
       
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left content */}
           <motion.div
@@ -33,17 +33,17 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             {/* Badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-climate-500/10 border border-climate-500/20 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-climate-500/10 border border-climate-500/20 mb-4"
             >
               <Sparkles className="w-4 h-4 text-climate-400" />
               <span className="text-sm font-medium text-climate-300">
                 Powered by IBM-NASA Prithvi WxC 2.3B
               </span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Heading */}
             <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
