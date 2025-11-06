@@ -41,16 +41,69 @@ export function ForecastChart({ forecast }) {
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>Temperature Forecast</CardTitle>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+    <div className="w-full">
+      <div className="mb-4 sm:mb-6">
+        <h3 className="text-base sm:text-lg font-semibold text-white mb-1">Temperature Forecast</h3>
+        <p className="text-xs sm:text-sm text-gray-400">
           7-day temperature trends with confidence intervals
         </p>
-      </CardHeader>
+      </div>
       
-      <CardContent>
-        <ResponsiveContainer width="100%" height={400}>
+      <div className="w-full">
+        <ResponsiveContainer width="100%" height={300} className="sm:hidden">
+          <AreaChart data={chartData}>
+            <defs>
+              <linearGradient id="colorHigh" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+              </linearGradient>
+              <linearGradient id="colorLow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+              </linearGradient>
+            </defs>
+            
+            <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
+            <XAxis 
+              dataKey="date" 
+              tick={{ fontSize: 10, fill: '#888' }}
+              stroke="#888"
+            />
+            <YAxis 
+              tick={{ fontSize: 10, fill: '#888' }}
+              stroke="#888"
+              width={40}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            
+            <Area
+              type="monotone"
+              dataKey="high"
+              stroke="#f97316"
+              fillOpacity={1}
+              fill="url(#colorHigh)"
+              name="High"
+            />
+            <Line
+              type="monotone"
+              dataKey="mean"
+              stroke="#0ea5e9"
+              strokeWidth={2}
+              dot={{ r: 3 }}
+              name="Average"
+            />
+            <Area
+              type="monotone"
+              dataKey="low"
+              stroke="#3b82f6"
+              fillOpacity={1}
+              fill="url(#colorLow)"
+              name="Low"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={400} className="hidden sm:block">
           <AreaChart data={chartData}>
             <defs>
               <linearGradient id="colorHigh" x1="0" y1="0" x2="0" y2="1">
@@ -103,7 +156,7 @@ export function ForecastChart({ forecast }) {
             />
           </AreaChart>
         </ResponsiveContainer>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
