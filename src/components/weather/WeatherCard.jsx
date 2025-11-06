@@ -36,16 +36,16 @@ export function WeatherCard({ day, index }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
     >
-      <Card className="text-center hover:shadow-lg transition-shadow">
-        <CardHeader>
-          <CardTitle className="text-lg">{dayName}</CardTitle>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{dateStr}</p>
+      <Card className="text-center hover:shadow-lg transition-shadow h-full">
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="text-base sm:text-lg">{dayName}</CardTitle>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{dateStr}</p>
         </CardHeader>
         
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           {/* Weather Icon */}
           <div className="flex justify-center">
-            <WeatherIcon className="w-12 h-12 text-climate-600 dark:text-climate-400" />
+            <WeatherIcon className="w-10 h-10 sm:w-12 sm:h-12 text-climate-600 dark:text-climate-400" />
           </div>
 
           {/* Temperature */}
@@ -55,7 +55,7 @@ export function WeatherCard({ day, index }) {
               label="Average"
             />
             
-            <div className="flex justify-between text-sm px-4">
+            <div className="flex justify-between text-xs sm:text-sm px-3 sm:px-4">
               <span className="text-gray-600 dark:text-gray-400">
                 H: {Math.round(day.temperature.max)}°
               </span>
@@ -66,20 +66,20 @@ export function WeatherCard({ day, index }) {
           </div>
 
           {/* Additional Info */}
-          <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center justify-center gap-2 text-sm">
-              <CloudRain className="w-4 h-4 text-blue-500" />
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+              <CloudRain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500" />
               <span className="dark:text-gray-300">{day.precipitation.probability}%</span>
             </div>
-            <div className="flex items-center justify-center gap-2 text-sm">
-              <Wind className="w-4 h-4 text-gray-500" />
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+              <Wind className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-500" />
               <span className="dark:text-gray-300">{Math.round(day.wind.maxSpeed)} km/h</span>
             </div>
           </div>
 
           {/* Confidence Badge */}
           <div className="pt-2">
-            <Badge variant={getConfidenceVariant(day.confidence)}>
+            <Badge variant={getConfidenceVariant(day.confidence)} className="text-xs">
               {day.confidence}% Confidence
             </Badge>
           </div>
